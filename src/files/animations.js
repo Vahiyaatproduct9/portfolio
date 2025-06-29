@@ -1,9 +1,12 @@
 export const opacity = {
     hidden: { opacity: 0, filter: 'blur(20px)' },
     visible: { opacity: 1, filter: 'none' },
-    transition: {
-        duration: 0.4,
-        ease: 'easeInOut'
+    exit: {
+        opacity: 1,
+        x: 1,
+        transition: {
+            delay: 3
+        }
     }
 }
 export const presentHeading = {
@@ -23,19 +26,16 @@ export const presentHeading = {
 }
 export const presentCard = {
     hidden: {
+        skewX: 0,
         opacity: 0,
         x: -20,
         filter: 'blur(20px)'
     },
     visible: {
+        skewX: 0,
         opacity: 1,
         x: 0,
         filter: 'blur(0)'
-    },
-    transition: {
-        duration: 1.6,
-        delay: 2.1,
-        ease: 'easeInOut'
     }
 }
 export const componentopacity = {
