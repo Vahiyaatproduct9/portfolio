@@ -1,103 +1,74 @@
-import Image from "next/image";
+'use client';
+import Main from './home/page'
+import css from '../files/main.module.css'
+import { opacity, presentHeading, presentCard, componentopacity } from '../files/animations'
+import { motion, spring } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link';
 
-export default function Home() {
+const Home = () => {
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    setLoaded(true)
+  }, [])
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <motion.div variants={opacity} initial="hidden" animate="visible" exit={{
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    }} transition={{
+      duration: 0.4,
+      ease: 'easeInOut'
+    }} className={css.container}>
+      <motion.div variants={presentHeading} initial="hidden" animate="visible" transition={{
+        delay: 0.4,
+        duration: 0.6,
+        ease: 'easeInOut'
+      }} className={css.headingContainer}>
+        <span className={css.Heading}>Grishma's Cover</span>
+        <span className={css.SubHeading}>Die Trying</span>
+      </motion.div>
+      <motion.div className={css.cardContainer}>
+        <motion.div variants={presentCard} initial="hidden" animate="visible" transition={{
+          duration: 0.5,
+          delay: 1.1,
+          ease: 'easeInOut'
+        }} className={css.card}>
+          <motion.img className={css.cardBackground} src={'./images/spiderman.png'} />
+          <div className={css.cardHeading}>
+            <div></div>
+            <motion.span variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 1.5 }}>Grishma's Cover</motion.span>
+          </div>
+          <div className={css.cardContent}>
+            <motion.div variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 1.7 }} className={css.cardSalutation}>
+              <motion.span variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 1.8 }} className={css.cardName}>Grishma D.</motion.span>
+              <span>
+                <motion.span variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 1.9 }} className={css.cardContentDesigner}>Designer</motion.span>
+                {" and "}
+                <motion.span variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 2 }} className={css.cardContentDeveloper}>{'<'}Developer{' />'}</motion.span>
+              </span>
+            </motion.div>
+            <div className={css.cardContentProjects}>
+              <motion.span variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 2.1 }} >Projects</motion.span>
+              <div>
+                <motion.div variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 2.3 }}><Link href={'/'}>KickStarter</Link></motion.div>
+                <motion.div variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 2.5 }}><Link href={'/'}>Portfolio</Link></motion.div>
+                <motion.div variants={componentopacity} initial="shuru" animate="animate" transition={{ duration: 0.4, delay: 2.7 }}><Link href={'/'}>Chef Claude</Link></motion.div>
+              </div>
+            </div>
+            <div className={css.social}>
+              <a href=""><motion.div variants={componentopacity} initial="shuru" animate={{ opacity: 0.7, y: 0 }} whileHover={{ opacity: 1, transition: { delay: 0, duration: 0.1, type: spring } }} transition={{ duration: 0.4, delay: 2.9 }} className={css.instagram} /></a>
+              <a href=""><motion.div variants={componentopacity} initial="shuru" animate={{ opacity: 0.7, y: 0 }} whileHover={{ opacity: 1, transition: { delay: 0, duration: 0.1 } }} transition={{ duration: 0.4, delay: 3.1 }} className={css.x} /></a>
+              <a href=""> <motion.div variants={componentopacity} initial="shuru" animate={{ opacity: 0.7, y: 0 }} whileHover={{ opacity: 1, transition: { delay: 0, duration: 0.1 } }} transition={{ duration: 0.4, delay: 3.3 }} className={css.email} /></a>
+            </div>
+          </div>
+
+        </motion.div>
+        <div className={css.exploreContainer}>
+          <Link href={"/home"}>Explore</Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </motion.div>
+    </motion.div>
+  )
 }
+
+export default Home
