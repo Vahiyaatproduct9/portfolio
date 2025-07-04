@@ -19,7 +19,11 @@ function Home() {
     useEffect(() => {
         setLoaded(true)
         window.scrollTo({ top: 0 })
-        setY(window.innerHeight)
+        if (typeof window !== 'undefined') {
+            // safe to use window here
+            setY(window.innerHeight)
+        }
+
     }, [])
     getrandomposition(100, 100)
     let { scrollY } = useScroll()
