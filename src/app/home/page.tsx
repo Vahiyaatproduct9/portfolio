@@ -20,24 +20,21 @@ function Home() {
     }
     useEffect(() => {
         setLoaded(true)
+        if (typeof window !== 'undefined') {
+            const handleLoad = () => {
+                setY(window.innerHeight);
+                setWindowWidth(window.innerWidth)
+                window.scrollTo({ top: 0 });
+            };
 
-        useEffect(() => {
-            if (typeof window !== 'undefined') {
-                const handleLoad = () => {
-                    setY(window.innerHeight);
-                    setWindowWidth(window.innerWidth)
-                    window.scrollTo({ top: 0 });
-                };
+            // Run once on load
+            handleLoad();
 
-                // Run once on load
-                handleLoad();
+            // Optional: Handle resize too (if you want y to update)
+            window.addEventListener('resize', handleLoad);
 
-                // Optional: Handle resize too (if you want y to update)
-                window.addEventListener('resize', handleLoad);
-
-                return () => window.removeEventListener('resize', handleLoad);
-            }
-        }, []);
+            return () => window.removeEventListener('resize', handleLoad);
+        }
 
     }, [])
     getrandomposition(100, 100)
