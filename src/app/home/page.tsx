@@ -18,13 +18,20 @@ function Home() {
     }
     useEffect(() => {
         setLoaded(true)
-
         if (typeof window !== 'undefined') {
-            // safe to use window here
-            setY(window.innerHeight)
-            window.scrollTo({ top: 0 })
-        }
+            const handleLoad = () => {
+                setY(window.innerHeight);
+                window.scrollTo({ top: 0 });
+            };
 
+            // Run once on load
+            handleLoad();
+
+            // Optional: Handle resize too (if you want y to update)
+            window.addEventListener('resize', handleLoad);
+
+            return () => window.removeEventListener('resize', handleLoad);
+        }
 
     }, [])
     getrandomposition(100, 100)
