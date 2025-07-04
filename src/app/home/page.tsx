@@ -18,11 +18,13 @@ function Home() {
     }
     useEffect(() => {
         setLoaded(true)
-        window.scrollTo({ top: 0 })
+
         if (typeof window !== 'undefined') {
             // safe to use window here
             setY(window.innerHeight)
+            window.scrollTo({ top: 0 })
         }
+
 
     }, [])
     getrandomposition(100, 100)
