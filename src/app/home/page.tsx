@@ -13,17 +13,37 @@ function Home() {
     const [loaded, setLoaded] = useState(false)
     const [randomposition, setRandomPosition] = useState({ x: 0, y: 0 })
     const [y, setY] = useState<number>(1260)
+
+    const [windowWidth, setWindowWidth] = useState<number>(1920)
     function getrandomposition(x: number, y: number) {
         setInterval(() => { setRandomPosition({ x: ((Math.random()) * x), y: ((Math.random()) * y) }) }, 3000)
     }
     useEffect(() => {
         setLoaded(true)
 
+        useEffect(() => {
+            if (typeof window !== 'undefined') {
+                const handleLoad = () => {
+                    setY(window.innerHeight);
+                    setWindowWidth(window.innerWidth)
+                    window.scrollTo({ top: 0 });
+                };
+
+                // Run once on load
+                handleLoad();
+
+                // Optional: Handle resize too (if you want y to update)
+                window.addEventListener('resize', handleLoad);
+
+                return () => window.removeEventListener('resize', handleLoad);
+            }
+        }, []);
+
     }, [])
     getrandomposition(100, 100)
     let { scrollY } = useScroll()
     let height = useTransform(scrollY, [0, y], [260, y + 20])
-    let width = useTransform(scrollY, [0, y], [260, window.innerWidth + 20])
+    let width = useTransform(scrollY, [0, y], [260, windowWidth + 20])
     let borderRadius = useTransform(scrollY, [0, y], [500 + 'px', 0 + 'px'])
     let spanOpacity = useTransform(scrollY, [0, y - 701, y - 700, y], ['rgba(0, 17, 71,' + 0.6 + ')', 'rgba(0, 17, 71,' + 1 + ')', 'linear-gradient(' + 72 + 'deg, rgb(41, 0, 117), rgb(0,17,71))', 'linear-gradient(' + 252 + 'deg, rgb(0, 162, 255), rgb(0,17,71))'])
     let x = useTransform(scrollY, [0, y], [40, 140])
@@ -33,7 +53,7 @@ function Home() {
     return (
         <div className={css.body}>
             <motion.div className={css.cardcontainer} style={{ justifyContent: isCentered.get() < 0.5 ? 'space-around' : 'center' }}>
-                <motion.div style={{ rotate: isCentered.get() * 3 + 'deg' }} whileHover={{ rotateZ: -3 }}>{window.innerWidth > 600 ? <Card setLoaded={setLoaded} /> : null}</motion.div>
+                <motion.div style={{ rotate: isCentered.get() * 3 + 'deg' }} whileHover={{ rotateZ: -3 }}>{windowWidth > 600 ? <Card setLoaded={setLoaded} /> : null}</motion.div>
                 <motion.div style={{ width: (1 - isCentered.get()) * 500 }} className={css.dummydiv} />
             </motion.div>
             <div className={css.container}>
@@ -95,7 +115,7 @@ function Home() {
                     <section className='absolute top-0 left-0 w-full h-full' style={{ zIndex: -1 }}>
                         <div className={css.headContainer}>
                             <motion.div style={{ paddingLeft: x }} className={css.DesignerContainer}>
-                                <Designer x={(window.innerWidth > 678) ? 600 : window.innerWidth} y={(window.innerWidth > 768) ? 167 : 100} />
+                                <Designer x={(windowWidth > 678) ? 600 : windowWidth} y={(windowWidth > 768) ? 167 : 100} />
                             </motion.div>
                             <div className={css.and}>
                                 <motion.span
@@ -166,10 +186,10 @@ function Home() {
                                 </motion.span>
                             </div>
                             <motion.div style={{ paddingRight: x }} className={css.DeveloperContainer}>
-                                <Developer width={window.innerWidth} />
+                                <Developer width={windowWidth} />
                             </motion.div>
                         </div>
-                        <DualHeads x={window.innerWidth} y={y} />
+                        <DualHeads x={windowWidth} y={y} />
 
                     </section>
                 </motion.div>
