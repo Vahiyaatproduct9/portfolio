@@ -1,0 +1,19 @@
+.body {
+    z-index: 1;
+    position: sticky;
+    top: 0;
+    background: royalblue;
+    color: white;
+    width: 100vw;
+    height: 100dvh;
+    margin-top: 220vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        font-family: Cooper Black;
+        text-shadow: 0 10px 13px rgba(0, 0, 0, 0.6);
+        font-size: 5rem;
+    }
+}

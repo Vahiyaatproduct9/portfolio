@@ -1,0 +1,130 @@
+.body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    .cardcontainer {
+        z-index: 10;
+        width: 100%;
+        position: fixed;
+        top: 584px;
+        left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        height: 0;
+
+        .dummydiv {
+            /* transition: all 0.4s ease-in-out; */
+            width: 500px;
+        }
+    }
+
+    .container {
+        position: fixed;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        background: rgb(255, 123, 0);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+        animation-name: colorchange;
+        animation-delay: 2s;
+        animation-duration: 4s;
+        animation-fill-mode: forwards;
+        z-index: 1;
+
+        .blob {
+            position: absolute;
+            border-radius: 100%;
+            transition-delay: 4s;
+        }
+
+        .containerchild {
+
+            font-size: 4rem;
+            font-family: Ancizar Sans;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            backdrop-filter: blur(150px);
+
+        }
+
+    }
+
+    .headContainer {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+
+        >div {
+            /* background: rgb(0, 162, 255); */
+            width: 100%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .and {
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+
+            >span {
+                font-family: Satisfy;
+                color: white;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+        }
+
+        .DesignerContainer {
+            justify-content: left;
+            z-index: -1;
+        }
+
+        .DeveloperContainer {
+            height: 200px;
+            z-index: -1;
+            justify-content: right;
+        }
+    }
+
+}
+
+@keyframes colorchange {
+    to {
+        background: #ccc
+    }
+}

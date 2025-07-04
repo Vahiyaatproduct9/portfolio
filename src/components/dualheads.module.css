@@ -1,0 +1,11 @@
+.svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    .path {
+        opacity: 0.6;
+        fill: rgba(2, 12, 54, 0.8);
+        filter: drop-shadow(-10 -10 12px black);
+    }
+}

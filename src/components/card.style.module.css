@@ -1,0 +1,189 @@
+div.card {
+    z-index: 10;
+    position: relative;
+    rotate: -3deg;
+    translate: 0 -30px;
+    height: 300px;
+    background-color: hsl(204, 96%, 19%);
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 1px rgba(56, 0, 0, 0.4);
+    width: 500px;
+    overflow: hidden;
+    transition: all 0.1s ease-in-out;
+
+
+    @media screen and (max-width: 768) {
+        width: 100%;
+        border-radius: 0;
+
+
+    }
+
+
+    .cardBackground {
+        object-fit: cover;
+        object-position: center;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+        user-select: none;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+
+    .cardHeading {
+
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+
+        span {
+            font-weight: 700;
+            font-family: Ancizar Sans;
+            font-size: 1.7rem;
+            text-shadow: 1px 1px 0 black;
+        }
+    }
+
+    .cardContent {
+        width: 100%;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        flex-direction: column;
+
+        div.cardSalutation {
+            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            width: 100%;
+            padding: 10px;
+            padding-left: 20px;
+        }
+
+        div.cardSalutation>span {
+            width: 100%;
+            text-align: left;
+        }
+
+        span.cardName {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        div.cardSalutation>span {
+            span.cardContentDesigner {
+                font-family: Segoe Script;
+            }
+
+            span.cardContentDeveloper {
+                font-family: consolas;
+            }
+
+        }
+
+        .cardContentProjects {
+            width: 100%;
+
+            span {
+                text-shadow: 1px 1px 1px black;
+                width: 100%;
+                padding-left: 20px;
+                font-weight: 700;
+                font-size: 1.3rem;
+            }
+
+            >div {
+                padding: 10px 30px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+                gap: 10px;
+
+                >* {
+                    font-size: 0.8rem;
+                    letter-spacing: 0;
+                    font-family: Inter;
+                    font-weight: 200;
+                    background: rgba(1, 36, 60, 0.7);
+                    backdrop-filter: opacity(0.6);
+                    border-radius: 5px;
+                    border-width: 1px;
+                    border-color: rgba(1, 36, 60, 0.8);
+                    flex-grow: 1;
+                    transition: 0.3s;
+                    padding: 0;
+
+                    >* {
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 7px 10px;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                >*:hover {
+                    transform: scale(1.1);
+                    font-weight: 400;
+                    z-index: 2;
+                    letter-spacing: 4px;
+                    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
+                }
+            }
+        }
+
+        div.social {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            gap: 20px;
+
+            div {
+                padding: 15px;
+                background-size: cover;
+                background-position: center;
+                opacity: 0.7;
+            }
+
+            .instagram {
+                background-image: url('../../public/images/instagram.png');
+            }
+
+
+            .x {
+                background-image: url('../../public/images/x.png');
+            }
+
+            .email {
+                background-image: url('../../public/images/email.png');
+            }
+
+        }
+
+
+
+    }
+}
+
+div.card:hover {
+    rotate: 0deg;
+    scale: 1.01;
+
+    box-shadow: 10px 10px 40px 5px rgba(56, 0, 0, 0.4);
+}
